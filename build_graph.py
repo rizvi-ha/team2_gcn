@@ -7,7 +7,12 @@ from torch_geometric.data.batch import Batch
 import multiprocessing as mp
 import re
 import argparse
+from tqdm import tqdm  # Import tqdm for progress tracking
 import os
+import resource
+rlimit = resource.getrlimit(resource.RLIMIT_NOFILE)
+resource.setrlimit(resource.RLIMIT_NOFILE, (4096, rlimit[1]))
+torch.multiprocessing.set_sharing_strategy('file_system')
 
 puncs = '[!“”"#$%&\'()*+,-./:;<=>?@[\\]^_`{|}~—～’]+'
 stopwords = ['at', 'based', 'in', 'of', 'for', 'on', 'and', 'to', 'an', 'using', 'with',
@@ -212,7 +217,7 @@ def build_dataset(path):
     
 
     with mp.Pool(processes=10) as pool:
-        results = pool.map(getdata,keys_list)
+        results = list(tqdm(pool.imap(getdata, keys_list), total=len(keys_list)))  # Add tqdm progress bar
     with open(path, "wb") as f:
         pk.dump(results, f)
     print('finish')

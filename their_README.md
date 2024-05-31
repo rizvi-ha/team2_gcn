@@ -14,4 +14,14 @@ python train.py --train_dir train.pkl --test_dir valid.pkl
 
 - build_graph.py and encoding.py in GCN and GCCAD are the same
 
+## Running Steps Specific to us
 
+```
+python encoding.py --path ./dataset/IND-WhoIsWho/pid_to_info_all.json --save_path ./dataset/roberta_embeddings.pkl
+
+python build_graph.py --author_dir ./dataset/IND-WhoIsWho/train_author.json  --save_dir ./dataset/train.pkl --embeddings_dir ./dataset/roberta_embeddings.pkl --pub_dir ./dataset/IND-WhoIsWho/pid_to_info_all.json
+
+python build_graph.py
+
+python train.py  --train_dir ./dataset/train.pkl  --test_dir ./dataset/valid.pkl --saved_dir gcn --log_name gcn [--usecoo] [--usecov] [--threshold 0.5]
+```
