@@ -21,7 +21,7 @@ python encoding.py --path ./dataset/IND-WhoIsWho/pid_to_info_all.json --save_pat
 
 python build_graph.py --author_dir ./dataset/IND-WhoIsWho/train_author.json  --save_dir ./dataset/train.pkl --embeddings_dir ./dataset/roberta_embeddings.pkl --pub_dir ./dataset/IND-WhoIsWho/pid_to_info_all.json
 
-python build_graph.py
+python build_graph.py --author_dir ./dataset/IND-WhoIsWho/ind_valid_author.json --save_dir ./dataset/valid.pkl --embeddings_dir ./dataset/roberta_embeddings.pkl --pub_dir ./dataset/IND-WhoIsWho/pid_to_info_all.json
 
 python train.py  --train_dir ./dataset/train.pkl  --test_dir ./dataset/valid.pkl --saved_dir gcn --log_name gcn [--usecoo] [--usecov] [--threshold 0.5]
 ```
