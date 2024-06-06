@@ -86,7 +86,7 @@ python build_graph.py --author_dir ./dataset/IND-WhoIsWho/ind_valid_author.json 
 
 python train.py  --train_dir ./dataset/train.pkl  --test_dir ./dataset/valid.pkl --saved_dir gcn --log_name gcn-log [--usecoo] [--usecov] [--threshold 0.5]
 ```
-`gcn/res.json` is the submission json, and `gcn-log` is the relevant log file. `[...]` are optional params.
+`gcn/res.json` is the submission json, and `gcn-log` is the relevant log file. `[...]` are optional params. The first 3 commands do standard data prepocessing, but take a long time. If you would just like to directly get the data `.pkl` files, please contact CS145 Team 2 to get them.
 
 ### Final submission after training and validating on the Leaderboard
 
