@@ -102,8 +102,4 @@ to build `test.pkl` and then:
 ```zsh
 python train.py  --train_dir ./dataset/train.pkl  --test_dir ./dataset/test.pkl --saved_dir gcn --log_name gcn-log [--usecoo] [--usecov] [--threshold 0.5]
 ```
-or possibly:
-```zsh
-python train.py  --train_dir ./dataset/train.pkl  --eval_dir ./dataset/valid.pkl --test_dir ./dataset/test.pkl --saved_dir gcn --log_name gcn-log [--usecoo] [--usecov] [--threshold 0.5]
-```
 to get a final `gcn/res.json` to submit to https://www.biendata.xyz/competition/ind_kdd_2024/final-submission/
