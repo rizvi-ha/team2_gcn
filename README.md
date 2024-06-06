@@ -73,3 +73,23 @@ git pull origin
 source venv/bin/activate
 
 ```
+
+### Final submission after training and validating on the Leaderboard
+
+```
+wget https://open-data-set.oss-cn-beijing.aliyuncs.com/oag-benchmark/kddcup-2024/IND-WhoIsWho/IND-test-public.zip
+```
+<UNZIP AND MOVE TO dataset/IND-test-public>
+then run:
+```zsh
+python build_graph.py --author_dir ./dataset/IND-test-public/ind_test_author_filter_public.json --save_dir ./dataset/test.pkl --embeddings_dir ./dataset/roberta_embeddings.pkl --pub_dir ./dataset/IND-WhoIsWho/pid_to_info_all.json
+```
+to build `test.pkl` and then:
+```zsh
+python train.py  --train_dir ./dataset/train.pkl  --test_dir ./dataset/test.pkl --saved_dir gcn --log_name gcn-log [--usecoo] [--usecov] [--threshold 0.5]
+```
+or possibly:
+```zsh
+python train.py  --train_dir ./dataset/train.pkl  --eval_dir ./dataset/valid.pkl --test_dir ./dataset/test.pkl --saved_dir gcn --log_name gcn-log [--usecoo] [--usecov] [--threshold 0.5]
+```
+to get a final res.json to submit to https://www.biendata.xyz/competition/ind_kdd_2024/final-submission/
