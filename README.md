@@ -74,6 +74,20 @@ source venv/bin/activate
 
 ```
 
+# Running the model
+
+### Training and Validation to Leaderboard
+```
+python encoding.py --path ./dataset/IND-WhoIsWho/pid_to_info_all.json --save_path ./dataset/roberta_embeddings.pkl
+
+python build_graph.py --author_dir ./dataset/IND-WhoIsWho/train_author.json  --save_dir ./dataset/train.pkl --embeddings_dir ./dataset/roberta_embeddings.pkl --pub_dir ./dataset/IND-WhoIsWho/pid_to_info_all.json
+
+python build_graph.py --author_dir ./dataset/IND-WhoIsWho/ind_valid_author.json --save_dir ./dataset/valid.pkl --embeddings_dir ./dataset/roberta_embeddings.pkl --pub_dir ./dataset/IND-WhoIsWho/pid_to_info_all.json
+
+python train.py  --train_dir ./dataset/train.pkl  --test_dir ./dataset/valid.pkl --saved_dir gcn --log_name gcn-log [--usecoo] [--usecov] [--threshold 0.5]
+```
+`gcn/res.json` is the submission json, and `gcn-log` is the relevant log file. `[...]` are optional params.
+
 ### Final submission after training and validating on the Leaderboard
 
 ```
@@ -92,4 +106,4 @@ or possibly:
 ```zsh
 python train.py  --train_dir ./dataset/train.pkl  --eval_dir ./dataset/valid.pkl --test_dir ./dataset/test.pkl --saved_dir gcn --log_name gcn-log [--usecoo] [--usecov] [--threshold 0.5]
 ```
-to get a final res.json to submit to https://www.biendata.xyz/competition/ind_kdd_2024/final-submission/
+to get a final `gcn/res.json` to submit to https://www.biendata.xyz/competition/ind_kdd_2024/final-submission/
