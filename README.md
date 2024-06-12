@@ -1,7 +1,9 @@
 Hi guys, here are some instructions on getting this running in
 a console environment. You should probably be doing this in a 
 Google Cloud VM as described in *week 4 discussion slides*, rather than on
-your own computer.
+your own computer. You can find details to setup the VM and driver specific to GCN
+at https://docs.google.com/document/d/1gf1dW5k5gNkuaaF5UAjBzXH8papBvuiqUk4bTTeKbcY/edit?usp=sharing
+if you want to replicate our environment
 
 # First time setup
 
@@ -88,6 +90,10 @@ python train.py  --train_dir ./dataset/train.pkl  --test_dir ./dataset/valid.pkl
 ```
 `gcn/res.json` is the submission json, and `gcn-log` is the relevant log file. `[...]` are optional params. The first 3 commands do standard data prepocessing, but take a long time. If you would just like to directly get the data `.pkl` files, please contact CS145 Team 2 to get them.
 
+Our optimal final combination uses the final training command:
+```
+python train.py  --train_dir ./dataset/train.pkl  --test_dir ./dataset/valid.pkl --saved_dir gcn --log_name gcn-log --usecoo --threshold 0.1
+```
 ### Final submission after training and validating on the Leaderboard
 
 ```
